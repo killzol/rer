@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Любовное послание</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            background: #ff4d6d;
+            box-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
+            animation: animateHeart 5s linear infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ff4d6d;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: 10px;
+        }
+
+        @keyframes animateHeart {
+            0% {
+                transform: rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            40% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(45deg) scale(1);
+                opacity: 0;
+                top: 100%;
+            }
+        }
+
+        .love-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        p {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: slideIn 1.5s forwards;
+        }
+
+        p:nth-child(2) { animation-delay: 1.5s; }
+        p:nth-child(3) { animation-delay: 3s; }
+        p:nth-child(4) { animation-delay: 4.5s; }
+        p:nth-child(5) { animation-delay: 6s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+            color: #ff4d6d;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="love-text">
+        <h1>Любовь — это <span class="pulse">всё</span></h1>
+        <p>Когда ты мне сосешь весь день</p>
+        <p>Все лицо в моей конче/p>
+        <p>С тобой каждое мгновение — это эрекция</p>
+        <p>Я буду кончать на тебя вечно...</p>
+    </div>
+
+    <script>
+        // Создаем летающие сердечки на фоне
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                
+                // Случайная позиция
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                
+                // Случайная задержка и продолжительность анимации
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                
+                // Случайный размер
+                const size = Math.random() * 15 + 10;
+                heart.style.width = size + 'px';
+                heart.style.height = size + 'px';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        createHearts();
+    </script>
+</body>
+</html>
